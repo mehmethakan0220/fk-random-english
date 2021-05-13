@@ -2,17 +2,20 @@ import React, { Component } from "react";
 import Ozneler from "./ozne/Ozneler";
 import Yardimcilar from "./yardimci/Yardimcilar";
 import Fiiller from "./fiil/Fiiller";
+import Sifatlar from "./sifat/Sifatlar";
 import "./App.css";
 import PNA from "./State";
 import ozneJson from "./ozne/ozneJson";
 import yardimciJson from "./yardimci/yardimciJson";
 import fiilJson from "./fiil/fiilJson";
+import sifatJson from "./sifat/sifatJson";
 
 export default class App extends Component {
   state = {
     printedOzne: 0,
     printedYardimci: 0,
     printedFiil: 0,
+    printedSifat: 0,
     pna: 0,
   };
 
@@ -21,6 +24,7 @@ export default class App extends Component {
     this.setState({ printedYardimci: Math.floor(Math.random() * 14) });
     this.setState({ printedFiil: Math.floor(Math.random() * 100) });
     this.setState({ pna: Math.floor(Math.random() * 3) });
+    this.setState({ printedSifat: Math.floor(Math.random() * 100) });
   };
 
   randomSubject = () => {
@@ -35,7 +39,12 @@ export default class App extends Component {
   randomPna = () => {
     this.setState({ pna: Math.floor(Math.random() * 3) });
   };
-
+  randomAdj = () => {
+    this.setState({ printedSifat: Math.floor(Math.random() * 100) });
+  };
+  resultCreator = (event) => {
+    document.getElementById("result").innerHTML = event.target.value;
+  };
   render() {
     return (
       <div className="container frame">
@@ -49,20 +58,24 @@ export default class App extends Component {
           </button>
         </div>
         <div className="row content-row">
-          <div className="col col-2 frame-col ">{PNA[this.state.pna]}</div>
+          <div className="col col-1 frame-col ">{PNA[this.state.pna]}</div>
 
-          <div className="col col-3 frame-col">
+          <div className="col col-2 frame-col">
             <Ozneler item={ozneJson[this.state.printedOzne]} />
           </div>
-          <div className="col col-4 frame-col">
+          <div className="col col-3 frame-col">
             <Yardimcilar item={yardimciJson[this.state.printedYardimci][0]} />
           </div>
           <div className="col col-3 frame-col">
             <Fiiller item={fiilJson[this.state.printedFiil][0]} />
           </div>
+          <div className="col col-3 frame-col">
+            <Sifatlar item={sifatJson[this.state.printedSifat]} />
+          </div>
         </div>
+
         <div className="row button-row">
-          <div className="col col-2 button-frame">
+          <div className="col col-1 button-frame">
             <button
               type="button"
               onClick={() => this.randomPna()}
@@ -71,7 +84,7 @@ export default class App extends Component {
               +?-
             </button>
           </div>
-          <div className="col col-3 button-frame">
+          <div className="col col-2 button-frame">
             <button
               type="button"
               onClick={() => this.randomSubject()}
@@ -80,7 +93,7 @@ export default class App extends Component {
               Subjects
             </button>
           </div>
-          <div className="col col-4 button-frame">
+          <div className="col col-3 button-frame">
             <button
               type="button"
               onClick={() => this.randomYardmici()}
@@ -98,7 +111,29 @@ export default class App extends Component {
               Verbs
             </button>
           </div>
+          <div className="col col-3 button-frame">
+            <button
+              type="button"
+              onClick={() => this.randomAdj()}
+              className="btn random-buttons"
+            >
+              Adjectives/Jobs
+            </button>
+          </div>
         </div>
+
+        <div className="row">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <textarea
+              onChange={this.resultCreator}
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+        <div id="result"></div>
       </div>
     );
   }
