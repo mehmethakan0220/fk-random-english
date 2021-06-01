@@ -22,38 +22,38 @@ export default class App extends Component {
   };
 
   randomAll = () => {
-    this.setState({ printedBaglac: Math.floor(Math.random() * 13) });
-    this.setState({ printedOzne: Math.floor(Math.random() * 11) });
-    this.setState({ printedYardimci: Math.floor(Math.random() * 14) });
-    this.setState({ printedFiil: Math.floor(Math.random() * 100) });
+    this.setState({ printedBaglac: Math.floor(Math.random() * baglacJson.length) });
+    this.setState({ printedOzne: Math.floor(Math.random() * ozneJson.length) });
+    this.setState({ printedYardimci: Math.floor(Math.random() * yardimciJson.length) });
+    this.setState({ printedFiil: Math.floor(Math.random() * fiilJson.length) });
     this.setState({ pna: Math.floor(Math.random() * 3) });
-    this.setState({ printedSifat: Math.floor(Math.random() * 100) });
+    this.setState({ printedSifat: Math.floor(Math.random() * sifatJson.length) });
   };
 
   randomSubject = () => {
-    this.setState({ printedOzne: Math.floor(Math.random() * 11) });
+    this.setState({ printedOzne: Math.floor(Math.random() * ozneJson.length) });
   };
   randomYardmici = () => {
-    this.setState({ printedYardimci: Math.floor(Math.random() * 14) });
+    this.setState({ printedYardimci: Math.floor(Math.random() * yardimciJson.length) });
   };
   randomVerb = () => {
-    this.setState({ printedFiil: Math.floor(Math.random() * 100) });
+    this.setState({ printedFiil: Math.floor(Math.random() * fiilJson.length) });
   };
   randomPna = () => {
     this.setState({ pna: Math.floor(Math.random() * 3) });
   };
   randomAdj = () => {
-    this.setState({ printedSifat: Math.floor(Math.random() * 100) });
+    this.setState({ printedSifat: Math.floor(Math.random() * sifatJson.length) });
   };
   randomConj = () => {
-    this.setState({ printedBaglac: Math.floor(Math.random() * 13) });
+    this.setState({ printedBaglac: Math.floor(Math.random() * baglacJson.length) });
   };
   resultCreator = (event) => {
     document.getElementById("result").innerHTML = event.target.value;
   };
   render() {
     return (
-      <div className="container frame">
+      <div className=" frame">
         <div className="row button-row">
           <button
             type="button"
